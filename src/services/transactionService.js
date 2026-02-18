@@ -9,6 +9,8 @@ import {
     orderBy,
     onSnapshot,
     serverTimestamp,
+    writeBatch,
+    getDocs,
 } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
@@ -53,4 +55,17 @@ export async function updateTransaction(id, data) {
 export async function deleteTransaction(id) {
     const ref = doc(db, COLLECTION, id);
     return deleteDoc(ref);
+}
+
+export async function clearAllTransactions(userId) {
+    const q = query(
+        collection(db, COLLECTION),
+        where('userId', '==', userId)
+    );
+    const snapshot = await getDocs(q);
+    const batch = writeBatch(db);
+    snapshot.docs.forEach((d) => {
+        batch.delete(d.ref);
+    });
+    return batch.commit();
 }

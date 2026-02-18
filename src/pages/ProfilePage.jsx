@@ -5,14 +5,16 @@ import { formatCurrency } from '../utils/formatters';
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import toast from 'react-hot-toast';
-import { User, Mail, Calendar, TrendingUp, TrendingDown, Wallet } from 'lucide-react';
+import { User, Mail, Calendar, TrendingUp, TrendingDown, Wallet, Trash2, AlertTriangle } from 'lucide-react';
 import { format } from 'date-fns';
+import { clearAllTransactions } from '../services/transactionService';
 
 export default function ProfilePage() {
     const { user } = useAuth();
     const { summary, transactions } = useTransactions();
     const [displayName, setDisplayName] = useState(user?.displayName || '');
     const [loading, setLoading] = useState(false);
+    const [showConfirmClear, setShowConfirmClear] = useState(false);
 
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
@@ -23,6 +25,21 @@ export default function ProfilePage() {
             toast.success('Profile updated!');
         } catch {
             toast.error('Failed to update profile');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleClearData = async () => {
+        if (!user) return;
+        setLoading(true);
+        try {
+            await clearAllTransactions(user.uid);
+            toast.success('All data cleared successfully');
+            setShowConfirmClear(false);
+        } catch (err) {
+            console.error(err);
+            toast.error('Failed to clear data');
         } finally {
             setLoading(false);
         }
@@ -127,6 +144,53 @@ export default function ProfilePage() {
                             {loading ? <span className="spinner" /> : 'Save Changes'}
                         </button>
                     </form>
+                </div>
+
+                <div className="card" style={{ gridColumn: '1 / -1', border: '1px solid rgba(244, 63, 94, 0.2)', background: 'rgba(244, 63, 94, 0.02)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+                        <div>
+                            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--expense)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>
+                                Danger Zone
+                            </div>
+                            <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
+                                This will permanently delete all your transactions and reset your balance. This action cannot be undone.
+                            </div>
+                        </div>
+
+                        {!showConfirmClear ? (
+                            <button
+                                className="btn"
+                                style={{ background: 'rgba(244, 63, 94, 0.1)', color: 'var(--expense)', border: '1px solid rgba(244, 63, 94, 0.2)' }}
+                                onClick={() => setShowConfirmClear(true)}
+                                id="profile-clear-init-btn"
+                            >
+                                <Trash2 size={16} /> Clear All Data
+                            </button>
+                        ) : (
+                            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--expense)', fontSize: '0.8rem', fontWeight: 600 }}>
+                                    <AlertTriangle size={14} /> Are you sure?
+                                </div>
+                                <button
+                                    className="btn"
+                                    style={{ background: 'var(--expense)', color: 'white' }}
+                                    onClick={handleClearData}
+                                    disabled={loading}
+                                    id="profile-clear-confirm-btn"
+                                >
+                                    {loading ? <span className="spinner" /> : 'Yes, Delete Everything'}
+                                </button>
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={() => setShowConfirmClear(false)}
+                                    disabled={loading}
+                                    id="profile-clear-cancel-btn"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
