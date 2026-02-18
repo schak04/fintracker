@@ -14,19 +14,26 @@ import { db } from '../firebase/config';
 
 const COLLECTION = 'transactions';
 
-export function subscribeToTransactions(userId, callback) {
+export function subscribeToTransactions(userId, callback, onError) {
     const q = query(
         collection(db, COLLECTION),
         where('userId', '==', userId),
         orderBy('date', 'desc')
     );
-    return onSnapshot(q, (snapshot) => {
-        const transactions = snapshot.docs.map((d) => ({
-            id: d.id,
-            ...d.data(),
-        }));
-        callback(transactions);
-    });
+    return onSnapshot(
+        q,
+        (snapshot) => {
+            const transactions = snapshot.docs.map((d) => ({
+                id: d.id,
+                ...d.data(),
+            }));
+            callback(transactions);
+        },
+        (error) => {
+            console.error('Snapshot error:', error);
+            if (onError) onError(error);
+        }
+    );
 }
 
 export async function addTransaction(userId, data) {
