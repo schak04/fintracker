@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 import Footer from '../components/Footer';
@@ -6,6 +7,7 @@ import Footer from '../components/Footer';
 
 export default function LoginPage() {
     const { signInWithGoogle, signInWithEmail, signUpWithEmail } = useAuth();
+    const navigate = useNavigate();
     const [mode, setMode] = useState('login');
     const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
     const [errors, setErrors] = useState({});
@@ -35,9 +37,11 @@ export default function LoginPage() {
             if (mode === 'login') {
                 await signInWithEmail(form.email, form.password);
                 toast.success('Welcome back!');
+                navigate('/dashboard');
             } else {
                 await signUpWithEmail(form.email, form.password, form.name);
                 toast.success('Account created! Welcome to FinTracker!');
+                navigate('/dashboard');
             }
         } catch (err) {
             const msg = err.code === 'auth/user-not-found' ? 'No account found with this email'
@@ -56,6 +60,7 @@ export default function LoginPage() {
         try {
             await signInWithGoogle();
             toast.success('Signed in with Google!');
+            navigate('/dashboard');
         } catch {
             toast.error('Google sign-in failed');
         } finally {
