@@ -17,17 +17,18 @@ const COLLECTION = 'transactions';
 export function subscribeToTransactions(userId, callback, onError) {
     const q = query(
         collection(db, COLLECTION),
-        where('userId', '==', userId),
-        orderBy('date', 'desc')
+        where('userId', '==', userId)
     );
     return onSnapshot(
         q,
         (snapshot) => {
-            const transactions = snapshot.docs.map((d) => ({
+            const data = snapshot.docs.map((d) => ({
                 id: d.id,
                 ...d.data(),
             }));
-            callback(transactions);
+
+            const sorted = data.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+            callback(sorted);
         },
         (error) => {
             console.error('Snapshot error:', error);

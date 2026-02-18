@@ -11,6 +11,8 @@ export function TransactionsProvider({ children }) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (authLoading) return;
+
         if (!user) {
             setTransactions([]);
             setLoading(false);
@@ -19,8 +21,6 @@ export function TransactionsProvider({ children }) {
         }
 
         setLoading(true);
-        console.log('Subscribing to transactions for user:', user.uid);
-
         const unsubscribe = subscribeToTransactions(
             user.uid,
             (data) => {
@@ -34,11 +34,8 @@ export function TransactionsProvider({ children }) {
             }
         );
 
-        return () => {
-            console.log('Unsubscribing from transactions');
-            unsubscribe();
-        };
-    }, [user]);
+        return () => unsubscribe();
+    }, [user, authLoading]);
 
     const summary = useMemo(() => {
         const income = transactions
