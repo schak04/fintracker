@@ -5,7 +5,7 @@ import { useAuth } from './AuthContext';
 const TransactionsContext = createContext(null);
 
 export function TransactionsProvider({ children }) {
-    const { user } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,10 +14,13 @@ export function TransactionsProvider({ children }) {
         if (!user) {
             setTransactions([]);
             setLoading(false);
+            setError(null);
             return;
         }
 
         setLoading(true);
+        console.log('Subscribing to transactions for user:', user.uid);
+
         const unsubscribe = subscribeToTransactions(
             user.uid,
             (data) => {
@@ -26,12 +29,15 @@ export function TransactionsProvider({ children }) {
                 setError(null);
             },
             (err) => {
-                setError(err.message);
+                setError(err.message || 'Failed to fetch transactions');
                 setLoading(false);
             }
         );
 
-        return () => unsubscribe();
+        return () => {
+            console.log('Unsubscribing from transactions');
+            unsubscribe();
+        };
     }, [user]);
 
     const summary = useMemo(() => {

@@ -20,7 +20,7 @@ const DEFAULT_FILTERS = {
 
 export default function DashboardPage() {
     const { user } = useAuth();
-    const { transactions, loading, summary } = useTransactions();
+    const { transactions, loading, summary, error } = useTransactions();
     const [filters, setFilters] = useState(DEFAULT_FILTERS);
     const [modalOpen, setModalOpen] = useState(false);
     const [editTx, setEditTx] = useState(null);
@@ -69,6 +69,7 @@ export default function DashboardPage() {
 
     return (
         <div className="page-wrapper">
+
             <div className="dashboard-header">
                 <div>
                     <h1 className="dashboard-greeting">
@@ -88,6 +89,23 @@ export default function DashboardPage() {
             </div>
 
             <SummaryCards summary={summary} transactionCount={transactions.length} />
+
+            {error && (
+                <div style={{
+                    padding: '12px 16px',
+                    margin: '0 0 24px 0',
+                    background: 'rgba(244, 63, 94, 0.1)',
+                    border: '1px solid rgba(244, 63, 94, 0.2)',
+                    borderRadius: '12px',
+                    color: 'var(--expense)',
+                    fontSize: '0.875rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10
+                }}>
+                    <span>⚠️</span> {error}
+                </div>
+            )}
 
             {transactions.length > 0 && <Charts transactions={transactions} />}
 
