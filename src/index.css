@@ -184,8 +184,8 @@ a:hover {
 
 .card-glass {
     background: rgba(22, 22, 31, 0.7);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
 }
@@ -419,8 +419,8 @@ a:hover {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -464,8 +464,8 @@ a:hover {
     right: 0;
     height: var(--navbar-h);
     background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     z-index: 900;
     transition: background var(--transition-slow);
