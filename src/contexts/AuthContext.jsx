@@ -23,7 +23,10 @@ export function AuthProvider({ children }) {
         return unsubscribe;
     }, []);
 
-    const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+    const signInWithGoogle = () => {
+        googleProvider.setCustomParameters({ prompt: 'select_account' });
+        return signInWithPopup(auth, googleProvider);
+    };
 
     const signInWithEmail = (email, password) =>
         signInWithEmailAndPassword(auth, email, password);

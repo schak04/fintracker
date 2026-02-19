@@ -62,8 +62,14 @@ export default function LoginPage() {
             await signInWithGoogle();
             toast.success('Signed in with Google!');
             navigate('/dashboard');
-        } catch {
-            toast.error('Google sign-in failed');
+        } catch (err) {
+            console.error('Google sign-in error:', err);
+            const msg = err.code === 'auth/popup-closed-by-user' ? 'Sign-in cancelled'
+                : err.code === 'auth/cancelled-popup-request' ? 'Only one popup can be open at a time'
+                    : err.code === 'auth/operation-not-allowed' ? 'Google sign-in is not enabled in Firebase'
+                        : err.code === 'auth/unauthorized-domain' ? 'This domain is not authorized for OAuth'
+                            : 'Google sign-in failed. Please try again.';
+            toast.error(msg);
         } finally {
             setLoading(false);
         }
