@@ -16,10 +16,10 @@
     --text-secondary: #9898b0;
     --text-muted: #5a5a72;
 
-    --accent: #6366f1;
-    --accent-light: #818cf8;
-    --accent-dark: #4f46e5;
-    --accent-glow: rgba(99, 102, 241, 0.25);
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-dark: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.25);
 
     --income: #10b981;
     --income-bg: rgba(16, 185, 129, 0.12);
@@ -63,7 +63,7 @@
     --text-secondary: #555570;
     --text-muted: #9898b0;
 
-    --accent-glow: rgba(99, 102, 241, 0.15);
+    --accent-glow: rgba(59, 130, 246, 0.15);
 
     --income-bg: rgba(16, 185, 129, 0.1);
     --expense-bg: rgba(244, 63, 94, 0.1);
@@ -497,7 +497,7 @@ a:hover {
 .logo-icon {
     width: 36px;
     height: 36px;
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -515,7 +515,7 @@ a:hover {
 .logo-text {
     font-size: 1.2rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--accent-light), #a78bfa);
+    background: linear-gradient(135deg, var(--accent-light), #22d3ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -580,7 +580,7 @@ a:hover {
     width: 36px;
     height: 36px;
     border-radius: var(--radius-full);
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
+    background: linear-gradient(135deg, var(--accent), #06b6d4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1051,7 +1051,7 @@ a:hover {
 .auth-bg-orb-2 {
     width: 300px;
     height: 300px;
-    background: #8b5cf6;
+    background: #0ea5e9;
     bottom: -80px;
     left: -80px;
 }
@@ -1433,7 +1433,7 @@ a:hover {
 .author-name {
     font-weight: 600;
     color: var(--text-primary);
-    background: linear-gradient(135deg, var(--accent-light), #a78bfa);
+    background: linear-gradient(135deg, var(--accent-light), #22d3ee);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
