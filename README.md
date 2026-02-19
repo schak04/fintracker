@@ -1,6 +1,6 @@
 # FinTracker - A Personal Finance Tracker
 
-A modern, full-featured personal finance tracker built with **React + Vite** and **Firebase**.
+This project is a modern, full-featured personal finance tracker built with **React + Vite** and **Firebase**.
 
 ---
 
@@ -8,7 +8,7 @@ A modern, full-featured personal finance tracker built with **React + Vite** and
 
 | Technology | Purpose |
 |---|---|
-| React 18 + Vite | Frontend framework |
+| React 18 + Vite | Frontend |
 | React Router v6 | Client-side routing |
 | Firebase Auth | User authentication |
 | Firestore | Real-time database |
@@ -22,14 +22,14 @@ A modern, full-featured personal finance tracker built with **React + Vite** and
 
 ## Features
 
-- **Authentication** - Google OAuth + Email/Password sign-in & sign-up
-- **Dashboard** - Summary cards (Balance, Income, Expenses) + Charts
-- **Charts** - Donut chart (expense breakdown) + Bar chart (monthly overview)
-- **Transactions** - Add, Edit, Delete income/expense records
-- **Filters** - Search by title, filter by type, category, and date range
-- **Dark/Light Mode** - Toggle with localStorage persistence
-- **Real-time** - Firestore real-time listeners for instant updates
-- **Responsive** - Works on mobile, tablet, and desktop
+- **Authentication:** Google OAuth + Email/Password sign-in & sign-up
+- **Dashboard:** Summary cards (Balance, Income, Expenses) + Charts
+- **Charts:** Donut chart (expense breakdown) + Bar chart (monthly overview)
+- **Transactions:** Add, Edit, Delete income/expense records
+- **Filters:** Search by title, filter by type, category, and date range
+- **Dark/Light Mode:** Toggle with localStorage persistence
+- **Real-time:** Firestore real-time listeners for instant updates
+- **Responsive:** Works on mobile, tablet, and desktop
 
 ---
 
