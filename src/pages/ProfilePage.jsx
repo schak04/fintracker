@@ -62,10 +62,10 @@ export default function ProfilePage() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
                         <div style={{
                             width: 80, height: 80, borderRadius: '50%',
-                            background: 'linear-gradient(135deg, var(--accent), #8b5cf6)',
+                            background: 'linear-gradient(135deg, var(--accent), #5cf6f1ff)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             fontSize: '1.8rem', fontWeight: 700, color: 'white',
-                            flexShrink: 0, boxShadow: '0 4px 20px rgba(99,102,241,0.4)',
+                            flexShrink: 0,
                         }}>
                             {user?.photoURL ? (
                                 <img src={user.photoURL} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
