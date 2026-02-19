@@ -41,6 +41,7 @@ src/
 │   ├── Charts.jsx                  <- Pie + Bar charts (Recharts)
 │   ├── DeleteConfirmModal.jsx
 │   ├── FiltersBar.jsx              <- Search + filter controls
+│   ├── Footer.jsx                  <- Page footer
 │   ├── Navbar.jsx                  <- Top navigation
 │   ├── ProtectedRoute.jsx          <- Auth guard
 │   ├── SummaryCards.jsx            <- Balance/Income/Expense cards
@@ -49,7 +50,8 @@ src/
 │   └── TransactionModal.jsx        <- Add/Edit form modal
 ├── contexts/
 │   ├── AuthContext.jsx             <- Firebase auth state
-│   └── ThemeContext.jsx            <- Dark/light mode
+│   ├── ThemeContext.jsx            <- Dark/light mode
+│   └── TransactionsContext.jsx     <- Global transaction state
 ├── firebase/
 │   └── config.js                   <- Firebase initialization
 ├── hooks/
@@ -62,7 +64,7 @@ src/
 ├── services/
 │   └── transactionService.js       <- Firestore CRUD
 └── utils/
-    ├── categories.js               <- Category definitions
+    ├── categories.jsx              <- Category definitions & Lucide icons
     └── formatters.js               <- Currency & date formatters
 ```
 
