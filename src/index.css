@@ -1417,7 +1417,7 @@ a:hover {
 }
 
 .footer-text {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
