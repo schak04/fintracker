@@ -8,7 +8,6 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
     return (
         <div className="summary-grid" role="region" aria-label="Financial summary">
             <div className="summary-card balance" id="summary-balance">
-                <div className="summary-card-glow" aria-hidden="true" />
                 <div className="summary-card-icon">
                     <CreditCard size={24} />
                 </div>
@@ -20,7 +19,6 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
             </div>
 
             <div className="summary-card income" id="summary-income">
-                <div className="summary-card-glow" aria-hidden="true" />
                 <div className="summary-card-icon">
                     <TrendingUp size={24} />
                 </div>
@@ -30,7 +28,6 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
             </div>
 
             <div className="summary-card expense" id="summary-expense">
-                <div className="summary-card-glow" aria-hidden="true" />
                 <div className="summary-card-icon">
                     <TrendingDown size={24} />
                 </div>

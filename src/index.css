@@ -35,7 +35,7 @@
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
-    --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.2);
+    --shadow-glow: none;
 
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -72,7 +72,7 @@
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
-    --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.12);
+    --shadow-glow: none;
 }
 
 *,
@@ -220,12 +220,12 @@ a:hover {
 .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent-dark));
     color: #fff;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-primary:active:not(:disabled) {
@@ -503,7 +503,7 @@ a:hover {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .logo-text {
@@ -667,21 +667,9 @@ a:hover {
     cursor: default;
 }
 
-.summary-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity var(--transition);
-}
-
 .summary-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
-}
-
-.summary-card:hover::before {
-    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .summary-card.balance {
@@ -768,29 +756,7 @@ a:hover {
     margin-top: 8px;
 }
 
-.summary-card-glow {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    filter: blur(40px);
-    right: -20px;
-    bottom: -20px;
-    opacity: 0.3;
-    pointer-events: none;
-}
 
-.summary-card.balance .summary-card-glow {
-    background: var(--accent);
-}
-
-.summary-card.income .summary-card-glow {
-    background: var(--income);
-}
-
-.summary-card.expense .summary-card-glow {
-    background: var(--expense);
-}
 
 .filters-bar {
     display: flex;
@@ -1031,7 +997,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+    box-shadow: var(--shadow-md);
     transition: all var(--transition);
     z-index: 800;
     font-size: 1.4rem;
@@ -1039,7 +1005,7 @@ a:hover {
 
 .fab:hover {
     transform: scale(1.1) rotate(45deg);
-    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.7);
+    box-shadow: var(--shadow-lg);
 }
 
 .auth-page {
