@@ -504,6 +504,12 @@ a:hover {
     justify-content: center;
     font-size: 1.1rem;
     box-shadow: var(--shadow-md);
+    color: #ffffff;
+}
+
+.navbar-logo:hover .logo-icon,
+.auth-logo:hover .logo-icon {
+    color: #ffffff;
 }
 
 .logo-text {
