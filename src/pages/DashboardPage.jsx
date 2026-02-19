@@ -73,7 +73,7 @@ export default function DashboardPage() {
             <div className="dashboard-header">
                 <div>
                     <h1 className="dashboard-greeting">
-                        {greeting}, {name}! 👋
+                        {greeting}, {name}!
                     </h1>
                     <div className="dashboard-date">
                         {format(new Date(), 'EEEE, MMMM d, yyyy')}

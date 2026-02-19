@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { Sun, Moon, LayoutDashboard, List, LogOut, User, ChevronDown } from 'lucide-react';
+import { Sun, Moon, LayoutDashboard, List, LogOut, User, ChevronDown, Wallet } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Navbar() {
@@ -40,7 +40,9 @@ export default function Navbar() {
         <nav className="navbar" role="navigation" aria-label="Main navigation">
             <div className="navbar-inner">
                 <NavLink to="/dashboard" className="navbar-logo">
-                    <div className="logo-icon">💰</div>
+                    <div className="logo-icon">
+                        <Wallet size={20} />
+                    </div>
                     <span className="logo-text">FinTracker</span>
                 </NavLink>
 

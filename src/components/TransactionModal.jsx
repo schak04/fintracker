@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
-import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../utils/categories';
+import { X, Pencil, Plus, TrendingUp, TrendingDown } from 'lucide-react';
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from '../utils/categories.jsx';
 import { getTodayDate } from '../utils/formatters';
 import { addTransaction, updateTransaction } from '../services/transactionService';
 import { useAuth } from '../contexts/AuthContext';
@@ -108,7 +108,7 @@ export default function TransactionModal({ isOpen, onClose, editTransaction }) {
             <div className="modal-box">
                 <div className="modal-header">
                     <h2 className="modal-title" id="modal-title">
-                        {isEditing ? '✏️ Edit Transaction' : '➕ Add Transaction'}
+                        {isEditing ? <><Pencil size={18} style={{ marginRight: 8 }} /> Edit Transaction</> : <><Plus size={18} style={{ marginRight: 8 }} /> Add Transaction</>}
                     </h2>
                     <button
                         className="btn btn-icon"
@@ -130,7 +130,7 @@ export default function TransactionModal({ isOpen, onClose, editTransaction }) {
                                 onClick={() => handleChange('type', 'income')}
                                 id="type-income"
                             >
-                                📈 Income
+                                <TrendingUp size={16} /> Income
                             </button>
                             <button
                                 type="button"
@@ -138,7 +138,7 @@ export default function TransactionModal({ isOpen, onClose, editTransaction }) {
                                 onClick={() => handleChange('type', 'expense')}
                                 id="type-expense"
                             >
-                                📉 Expense
+                                <TrendingDown size={16} /> Expense
                             </button>
                         </div>
                     </div>
@@ -184,7 +184,7 @@ export default function TransactionModal({ isOpen, onClose, editTransaction }) {
                             <option value="">Select category...</option>
                             {categories.map((cat) => (
                                 <option key={cat.value} value={cat.value}>
-                                    {cat.icon} {cat.label}
+                                    {cat.label}
                                 </option>
                             ))}
                         </select>

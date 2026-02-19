@@ -1,5 +1,5 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react';
-import { ALL_CATEGORIES } from '../utils/categories';
+import { ALL_CATEGORIES } from '../utils/categories.jsx';
 import { useState, useEffect } from 'react';
 
 export default function FiltersBar({ filters, onChange, onReset }) {
@@ -63,7 +63,7 @@ export default function FiltersBar({ filters, onChange, onReset }) {
                     <option value="all">All</option>
                     {ALL_CATEGORIES.map((cat) => (
                         <option key={cat.value} value={cat.value}>
-                            {cat.icon} {cat.label}
+                            {cat.label}
                         </option>
                     ))}
                 </select>

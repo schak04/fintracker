@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { CreditCard, TrendingUp, TrendingDown } from 'lucide-react';
 import { formatCurrency } from '../utils/formatters';
 
 const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
@@ -8,7 +9,9 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
         <div className="summary-grid" role="region" aria-label="Financial summary">
             <div className="summary-card balance" id="summary-balance">
                 <div className="summary-card-glow" aria-hidden="true" />
-                <div className="summary-card-icon">💳</div>
+                <div className="summary-card-icon">
+                    <CreditCard size={24} />
+                </div>
                 <div className="summary-card-label">Total Balance</div>
                 <div className="summary-card-amount">{formatCurrency(balance)}</div>
                 <div className="summary-card-sub">
@@ -18,7 +21,9 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
 
             <div className="summary-card income" id="summary-income">
                 <div className="summary-card-glow" aria-hidden="true" />
-                <div className="summary-card-icon">📈</div>
+                <div className="summary-card-icon">
+                    <TrendingUp size={24} />
+                </div>
                 <div className="summary-card-label">Total Income</div>
                 <div className="summary-card-amount">{formatCurrency(income)}</div>
                 <div className="summary-card-sub">Money earned</div>
@@ -26,7 +31,9 @@ const SummaryCards = memo(function SummaryCards({ summary, transactionCount }) {
 
             <div className="summary-card expense" id="summary-expense">
                 <div className="summary-card-glow" aria-hidden="true" />
-                <div className="summary-card-icon">📉</div>
+                <div className="summary-card-icon">
+                    <TrendingDown size={24} />
+                </div>
                 <div className="summary-card-label">Total Expenses</div>
                 <div className="summary-card-amount">{formatCurrency(expense)}</div>
                 <div className="summary-card-sub">Money spent</div>

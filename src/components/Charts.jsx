@@ -3,7 +3,8 @@ import {
     PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend,
     BarChart, Bar, XAxis, YAxis, CartesianGrid,
 } from 'recharts';
-import { getCategoryInfo, CHART_COLORS } from '../utils/categories';
+import { TrendingUp, TrendingDown, Banknote, PieChart as PieIcon, BarChart3 } from 'lucide-react';
+import { getCategoryInfo, CHART_COLORS } from '../utils/categories.jsx';
 import { formatCurrency, getMonthYear } from '../utils/formatters';
 
 function CustomTooltip({ active, payload }) {
@@ -17,9 +18,11 @@ function CustomTooltip({ active, payload }) {
                 fontSize: '0.82rem',
                 color: 'var(--text-primary)',
             }}>
-                <div style={{ fontWeight: 600 }}>{payload[0].name}</div>
-                <div style={{ color: payload[0].color || 'var(--accent-light)', marginTop: 2 }}>
-                    {formatCurrency(payload[0].value)}
+                <div style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                    {payload[0]?.payload?.icon} {payload[0]?.name}
+                </div>
+                <div style={{ color: payload[0]?.color || 'var(--accent-light)' }}>
+                    {formatCurrency(payload[0]?.value)}
                 </div>
             </div>
         );
@@ -40,8 +43,8 @@ function BarTooltip({ active, payload, label }) {
             }}>
                 <div style={{ fontWeight: 600, marginBottom: 4 }}>{label}</div>
                 {payload.map((p) => (
-                    <div key={p.dataKey} style={{ color: p.fill, marginTop: 2 }}>
-                        {p.dataKey === 'income' ? '📈' : '📉'} {p.dataKey.charAt(0).toUpperCase() + p.dataKey.slice(1)}: {formatCurrency(p.value)}
+                    <div key={p.dataKey} style={{ color: p.fill, marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+                        {p.dataKey === 'income' ? <TrendingUp size={14} /> : <TrendingDown size={14} />} {p.dataKey.charAt(0).toUpperCase() + p.dataKey.slice(1)}: {formatCurrency(p.value)}
                     </div>
                 ))}
             </div>
@@ -61,7 +64,7 @@ const Charts = memo(function Charts({ transactions }) {
         return Object.entries(map)
             .map(([cat, value]) => {
                 const info = getCategoryInfo(cat);
-                return { name: `${info.icon} ${info.label}`, value, color: info.color };
+                return { name: info.label, value, color: info.color, icon: info.icon };
             })
             .sort((a, b) => b.value - a.value)
             .slice(0, 8);
@@ -86,7 +89,9 @@ const Charts = memo(function Charts({ transactions }) {
     return (
         <div className="charts-grid" role="region" aria-label="Financial charts">
             <div className="chart-card">
-                <div className="chart-title">💸 Expense Breakdown</div>
+                <div className="chart-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Banknote size={18} /> Expense Breakdown
+                </div>
                 {hasExpenses ? (
                     <ResponsiveContainer width="100%" height={240}>
                         <PieChart>
@@ -105,22 +110,26 @@ const Charts = memo(function Charts({ transactions }) {
                             </Pie>
                             <Tooltip content={<CustomTooltip />} />
                             <Legend
-                                formatter={(value) => (
-                                    <span style={{ color: 'var(--text-secondary)', fontSize: '0.78rem' }}>{value}</span>
+                                formatter={(value, entry) => (
+                                    <span style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                                        {entry?.payload?.icon} {value}
+                                    </span>
                                 )}
                             />
                         </PieChart>
                     </ResponsiveContainer>
                 ) : (
                     <div className="empty-state" style={{ padding: '40px 0' }}>
-                        <div className="empty-icon">🥧</div>
+                        <div className="empty-icon"><PieIcon size={40} /></div>
                         <div className="empty-sub">No expense data yet</div>
                     </div>
                 )}
             </div>
 
             <div className="chart-card">
-                <div className="chart-title">📊 Monthly Overview</div>
+                <div className="chart-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <BarChart3 size={18} /> Monthly Overview
+                </div>
                 {hasMonthly ? (
                     <ResponsiveContainer width="100%" height={240}>
                         <BarChart data={monthlyData} barSize={14} barGap={4}>
@@ -144,7 +153,7 @@ const Charts = memo(function Charts({ transactions }) {
                     </ResponsiveContainer>
                 ) : (
                     <div className="empty-state" style={{ padding: '40px 0' }}>
-                        <div className="empty-icon">📊</div>
+                        <div className="empty-icon"><BarChart3 size={40} /></div>
                         <div className="empty-sub">No monthly data yet</div>
                     </div>
                 )}

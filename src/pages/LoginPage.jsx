@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { Wallet } from 'lucide-react';
 import toast from 'react-hot-toast';
 import Footer from '../components/Footer';
 
@@ -76,7 +77,9 @@ export default function LoginPage() {
             <div className="auth-content">
                 <div className="auth-card">
                     <div className="auth-logo">
-                        <div className="logo-icon" style={{ width: 44, height: 44, fontSize: '1.4rem' }}>💰</div>
+                        <div className="logo-icon" style={{ width: 44, height: 44, fontSize: '1.4rem' }}>
+                            <Wallet size={24} />
+                        </div>
                         <span className="logo-text" style={{ fontSize: '1.5rem' }}>FinTracker</span>
                     </div>
 
@@ -119,7 +122,7 @@ export default function LoginPage() {
                                     id="auth-name"
                                     type="text"
                                     className="form-input"
-                                    placeholder="John Doe"
+                                    placeholder="Enter your name"
                                     value={form.name}
                                     onChange={(e) => handleChange('name', e.target.value)}
                                     autoComplete="name"

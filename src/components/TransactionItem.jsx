@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
-import { getCategoryInfo } from '../utils/categories';
+import { getCategoryInfo } from '../utils/categories.jsx';
 import { formatCurrency, formatDate } from '../utils/formatters';
 
 const TransactionItem = memo(function TransactionItem({ transaction, onEdit, onDelete, index }) {
