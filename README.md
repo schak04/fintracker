@@ -20,6 +20,43 @@ This project is a modern, full-featured personal finance tracker built with **Re
 
 ---
 
+## Containerization and Deployment (Docker + AWS EC2)
+
+> This project is containerized using Docker and deployed on AWS EC2.
+
+Live URL: http://54.167.42.121
+
+### Commands Used
+
+```bash
+# Connected to EC2
+ssh -i <key.pem> ubuntu@<ec2-public-ip>
+
+# Navigated inside project
+cd fintracker
+
+# Built Docker image
+docker build -t fintracker .
+
+# Ran container
+docker run -d -p 80:80 fintracker
+
+# Verified
+docker ps
+curl localhost
+```
+
+### Docker Image
+
+Docker Hub: https://hub.docker.com/r/schak04/fintracker
+
+```bash
+docker pull schak04/fintracker:latest
+docker run -p 8080:80 schak04/fintracker:latest
+```
+
+---
+
 ## Features
 
 - **Authentication:** Google OAuth + Email/Password sign-in & sign-up
