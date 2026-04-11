@@ -26,6 +26,10 @@ This project is a modern, full-featured personal finance tracker built with **Re
 
 Live URL: http://54.167.42.121
 
+### Screenshot
+
+![image](./screenshots/docker-aws-deployed-ss.png)
+
 ### Commands Used
 
 ```bash
